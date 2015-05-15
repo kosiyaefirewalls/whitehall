@@ -1,10 +1,10 @@
 <%
   link_to_homepage ||= false
 %>
-<% if organisation.active_child_organisations_excluding_sub_organisations.any? %>
+<% if organisation.active_child_organisations_excluding_sub_organisations_and_courts_and_tribunals.any? %>
   <p class="works-with">
-    Works with <%= organisation.active_child_organisations_excluding_sub_organisations.count %>
-    <% if organisation.active_child_organisations_excluding_sub_organisations.count == 1 %>
+    Works with <%= organisation.active_child_organisations_excluding_sub_organisations_and_courts_and_tribunals.count %>
+    <% if organisation.active_child_organisations_excluding_sub_organisations_and_courts_and_tribunals.count == 1 %>
       public body
     <% else %>
       agencies and public bodies

@@ -74,6 +74,11 @@ module Organisation::OrganisationTypeConcern
       active_child_organisations_excluding_sub_organisations.group_by(&:organisation_type).sort_by { |type, department| type.listing_position }
   end
 
+  def active_child_organisations_excluding_sub_organisations_and_courts_and_tribunals
+    @active_child_organisations_excluding_sub_organisations ||=
+      child_organisations.excluding_govuk_status_closed.excluding_courts_and_tribunals.with_translations(I18n.locale).where("organisation_type_key != 'sub_organisation'").ordered_by_name_ignoring_prefix
+  end
+
   def can_index_in_search?
     super && !court_or_hmcts_tribunal?
   end
